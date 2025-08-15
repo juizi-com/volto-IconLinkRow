@@ -3,40 +3,36 @@ import HomeIcon from '@plone/volto/icons/home.svg';
 import FolderIcon from '@plone/volto/icons/folder.svg';
 import UserIcon from '@plone/volto/icons/user.svg';
 import PencilIcon from '@plone/volto/icons/pencil.svg';
+import BriefcaseIcon from '@plone/volto/icons/briefcase.svg';
+import FingerPrintIcon from '@plone/volto/icons/finger-print.svg';
+import BellIcon from '@plone/volto/icons/bell-ringing.svg';
 
-const iconChoices = {
+// Exported so Edit/View can reuse without redefining
+export const iconChoices = {
   link: LinkIcon,
   home: HomeIcon,
   folder: FolderIcon,
   user: UserIcon,
   pencil: PencilIcon,
+  briefcase: BriefcaseIcon,
+  fingerprint: FingerPrintIcon,
+  bell: BellIcon,
 };
 
-export const backgroundColorChoices = [
-  ['var(--charcoal)', 'Charcoal'],
-  ['#ffffff', 'White'],
-  ['var(--lightgrey)', 'Light grey'],
-  ['var(--turquoise)', 'Turquoise'],
-  ['var(--darkturquoise)', 'Dark Turquoise'],
-  ['var(--red)', 'Red'],
-];
-
-export const backgroundColorThemes = {
-  'var(--charcoal)': 'dark',
-  '#ffffff': 'light',
-  'var(--lightgrey)': 'light',
-  'var(--turquoise)': 'dark',
-  'var(--darkturquoise)': 'dark',
-  'var(--red)': 'dark',
-};
-
-const schema = (props) => ({
+const schema = () => ({
   title: 'Icon Link Row',
   fieldsets: [
     {
       id: 'default',
       title: 'Default',
-      fields: ['header', 'items', 'buttonLabel', 'buttonLink', 'showButton', 'backgroundColor', 'fullWidth'],
+      fields: [
+        'header',
+        'items',
+        'buttonLabel',
+        'buttonLink',
+        'showButton',
+        'mobileCarousel',
+      ],
     },
   ],
   properties: {
@@ -100,16 +96,12 @@ const schema = (props) => ({
       type: 'boolean',
       default: false,
     },
-    backgroundColor: {
-      title: 'Background colour',
-      widget: 'select',
-      choices: backgroundColorChoices,
-      default: '#f5f5f5',
-    },
-    fullWidth: {
-      title: 'Full width background',
+    mobileCarousel: {
+      title: 'Use carousel on mobile',
       type: 'boolean',
       default: false,
+      description:
+        'On small screens this row becomes a carousel with dots, one item per slide, and automatic scrolling.',
     },
   },
   required: [],
